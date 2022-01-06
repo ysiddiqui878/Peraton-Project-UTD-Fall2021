@@ -1,0 +1,314 @@
+<!--Eventually, this should be in its own application/templates. For now, it remain with loginpage application-->
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src='https://production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/aperyon/pen/oxzpaE?depth=everything&order=popularity&page=23&q=translate&show_forks=false" />
+    <!--Dropzone js & css-->
+    <script src='../static/main.js' defer></script>
+    <!--    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>-->
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    <style>
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 10;
+  width: 120px;
+  height: 120px;
+
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+</style>
+    <style class="cp-pen-styles">html, body {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: #325FAC;
+  /*display: flex;
+  justify-content: center;
+  align-items: center;*/
+  font-size: 16px;
+}
+
+.flex-container{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: inherit;
+    padding: 0;
+    margin-right: -20px;
+    margin-left: -20px
+}
+
+
+.flex-items{
+    margin: 10px auto;
+}
+
+
+/* Customize bootstrap.*/
+
+
+
+.col-md-12 {
+    -ms-flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.col-lg-5 {
+    -ms-flex: 0 0 41.666667%;
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+}
+
+.col-xl-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+.pt-4, .py-4 {
+    padding-top: 1.5rem;
+}
+.pl-3, .px-3 {
+    padding-left: 1rem;
+}
+.pr-3, .px-3 {
+    padding-right: 1rem;
+}
+
+.order-lg-1 {
+    -ms-flex-order: 1;
+    order: 1;
+}
+
+.order-lg-2 {
+    -ms-flex-order: 2;
+    order: 2;
+}
+
+.text-left {
+    text-align: left;
+}
+
+/* Customize bootstrap.  For progress bar.*/
+bar-success{
+    background-color: #3AD72D
+}
+
+.col-md-12 {
+    max-width:100%;
+}
+
+.mt-3, .my-3 {
+    margin-top: 1rem;
+}
+
+.mb-4, .my-4 {
+    margin-bottom: 1.5rem;
+}
+
+.progress {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #C4C4C4;
+    transition: width .3s ease;
+}
+
+.fontcolor {
+    color: LightGray;
+}
+
+.tablet {
+    outline-style:solid;
+    background-color: #C4C4C4;
+}
+
+.inner_pane {
+    outline-style:solid;
+}
+
+h2.underline {
+    padding-right:10px; border-bottom:1px solid black; position:relative;
+}
+h2.underline span { 
+    display:block; border-bottom:1px solid white; position:absolute; bottom:0px 
+} /*border color must be same as background color. assumed here to be white*/ 
+
+/*Color change in dropzone hover.*/
+.dz:hover {
+    background-color: aliceblue !important;
+}
+
+/*Text from doc is shown here.*/
+.display-content {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.navbar {
+    width: 100%;
+    background-color: darkgreen;
+    padding-left: 30px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+}
+
+nav-links {
+
+}
+
+img.resize {
+    width: 15%;
+    height: 25%;
+}
+
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <img class="resize" src="https://www.peraton.com/wp-content/themes/peraton/images/peraton-logo-tagline.svg" alt="Peraton">   
+    </nav>
+<div style="max-width: 150em; padding: 20px;">
+    
+    <div class="flex-container">
+        <!--The entire side-bar.-->
+        <div class="flex-items col-xl-4 col-lg-5 col-md-12 result-sidebar text-left py-4 px-3 order-lg-2">
+            <!--Results Text (Favourable%)-->
+            <h2 class="underline fontcolor">Results</h2>
+            <!--Progress bar.-->
+            <div class="col-md-12 mt-3 mb-4 p-0 float-left" style="padding:0;">
+                <h6 class="fontcolor">Accuracy Score</h6>
+                <div class="progress">
+                    <div id="plag" class="progress-bar bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                        {{accuracy}}
+                    </div>
+                </div>
+            </div>
+            <!--Progress Bar-->
+            <div class="col-md-12 mt-3 mb-4 p-0 float-left" style="padding:0;">
+                <h6 class="fontcolor">Positive Score</h6>
+                <div class="progress">
+                    <div id="plag" class="progress-bar bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                        {{favourable}}
+                    </div>
+                </div>
+            </div>
+            <!--Progress Bar-->
+            <div class="col-md-12 mt-3 mb-4 p-0 float-left" style="padding:0;">
+                <h6 class="fontcolor">Negative Score</h6>
+                <div class="progress">
+                    <div id="plag" class="progress-bar bg-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                        {{unfavourable}}
+                    </div>
+                </div>
+            </div>
+            <!--Findings Text-->
+            <h2 class="underline fontcolor">Report</h2>
+            <h5 class="underline fontcolor">Positive</h5>
+            <div class="tablet">
+                <div class="inner_pane">
+                    <div class="display-content">
+                        <div style="text-align: justify;">
+                            <text>{{pos_paragraph}}</text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h5 class="underline fontcolor">Negative</h5>
+            <div class="tablet">
+                <div class="inner_pane">
+                    <div class="display-content">
+                        <div style="text-align: justify;">
+                            <text>{{neg_paragraph}}</text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-items col-xl-8 col-lg-7 col-md-12 result px-3 py-4 order-lg-1">
+            <h2 class="underline fontcolor">Document Viewer{{doc_name}}</h2>
+            <!--The Tablet-->
+            <div class="tablet">
+                <!--Tab Pane-->
+                <div class="inner_pane">
+                    <!--Document upload pane-->
+                    <div class="upload-content dropdown-adjustment">
+                        <div id="loader" style="display:none"></div>
+                        <form action="upload/" method="POST" class="dropzone dz" id="doc-dropzone">
+                            {% csrf_token %}
+                            <div class="fallback">
+                                <input name="file" type="file" multiple />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="display-content" id="dc">
+                        <div style="text-align: justify;">
+                            <text>
+                                {{parsed_text}}
+                            </text>
+                        </div>
+                    </div>
+                </div>
+                <!--Download Report, Next Page, PreviousPage, Page Count...-->
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+﻿
